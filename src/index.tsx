@@ -3,7 +3,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const wrappedApp = (
-  <App />
+  <ThemeProvider>
+    <App />
+  </ThemeProvider>
 );
 
 ReactDOM.render(wrappedApp, document.getElementById('root'));
