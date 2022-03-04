@@ -2,6 +2,7 @@ import HomePage from '../../pages/HomePage';
 import {
 ISwitchItem,
 } from 'react-declarative';
+import OneProfilePage from '../../pages/OneProfilePage';
 import ProfilesPage from '../../pages/ProfilesPage';
 
 export const routes: ISwitchItem[] = [
@@ -10,9 +11,13 @@ export const routes: ISwitchItem[] = [
       component: HomePage,
     },
     {
-      path: '/profiles-;ist',
+      path: '/profiles-list',
       component: ProfilesPage,
     },
+    {
+        path: '/one-profile/:id',
+        component: OneProfilePage,
+      },
     
   ];
   

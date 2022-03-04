@@ -12,17 +12,17 @@ export const App = () => {
           ioc.routerService.push('/');
         } else if (name === 'profiles-list') {
           ioc.routerService.push('/profiles-list');
-        }
+        } 
       };
       return (
        <Scaffold onOptionClick={handleMenuClick} title="InfoLink CRM" options={options}>
-        <Switch
-            Loading={() => <p>Checking permissions (mock)</p>}
-            NotFound={() => <p>Not found(</p>}
-            history={ioc.routerService}
-            items={routes}
-        />
-    </Scaffold>   
+            <Switch
+                Loading={() => <p>Checking permissions (mock)</p>}
+                NotFound={() => <p>Not found(</p>}
+                history={ioc.routerService}
+                items={routes}
+            />
+        </Scaffold>   
       )
   }
     

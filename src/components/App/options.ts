@@ -6,7 +6,7 @@ export const options: IMenuGroup[] = [
         name: 'home-page',
     },
     {
-        label: 'List',
+        label: 'Profiles',
         name: 'profiles-list',
     },
 ];
