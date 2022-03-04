@@ -6,7 +6,7 @@ import RouterService from "../lib/RouterService"
 import { observer } from "mobx-react";
 import { useState } from "react";
 
-const fields: TypedField<IPerson>[] = [
+const fields: TypedField[] = [
     {
         type: FieldType.Rating,
         title: 'Pcccc',
@@ -16,7 +16,7 @@ const fields: TypedField<IPerson>[] = [
       title: 'Profile data',
     },
     {
-      name: 'firstName',
+      name: 'id',
       type: FieldType.Text,
       title: 'First name',
       isInvalid({
@@ -97,7 +97,9 @@ export const OneProfilePage = ({
     const handleBack = () => {
       routerService.push(`/`);
     };
-    const handler = () => personService.one(id);
+    const handler = () => ({
+        id: id,
+    });            // Вот тут идет привязка к конкретному ID из ProfilesPage. 
     return (
       <>
         <Breadcrumbs
@@ -106,11 +108,11 @@ export const OneProfilePage = ({
             onSave={handleSave}    //не работает функция
             onBack={handleBack}
         />
-       <OneTyped<IPerson>
+       <OneTyped
             fields={fields}
-            // handler={handler}                    // еси включить, то пропадает нижняя форма (TepedField)
+            handler={handler}                    // еси включить, то пропадает нижняя форма (TepedField)
             // fallback={personService.fallback}   // с этим вообще ниче не работает
-            change={handleChange}
+            // change={handleChange}
          />
        
       </>
