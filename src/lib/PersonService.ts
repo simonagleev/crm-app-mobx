@@ -1,7 +1,3 @@
-import {
-  ListHandlerPagination,
-  ListHandlerSortModel,
-} from "react-declarative";
 import { action, observable } from "mobx";
 
 import ApiService from "./ApiService";
@@ -9,6 +5,7 @@ import { CC_ERROR } from "../config";
 import IPerson from "../model/IPerson";
 import RouterService from "../lib/RouterService"
 import { makeObservable } from "mobx";
+import profiles from '../mock/profiles.json'
 
 class PersonService {
   static one(id: string) {
@@ -34,43 +31,17 @@ class PersonService {
   }
   
   
-  async list(
-    filters: Record<string, unknown>,
-    pagination: ListHandlerPagination,
-    sort: ListHandlerSortModel
+  async list(   //Тут берем все данные для списка людей
   ) {  
-    let rows = await this.apiService.get<IPerson[]>(`crud`, {
-      filters,
-      pagination,
-      sort,
-    });
-    const { length: total } = rows;
-    rows = rows.slice(pagination.offset, pagination.limit + pagination.offset);
-    return {
-      rows,
-      total,
-    };
+    return profiles;    //Раньше тут былв логика получения данных с сервера, а сейчас просто из локального файла profiles.json
   };
 
   one(id: string): Promise<IPerson | null> {
     console.log('ONE has happened')
-    if (id === 'create') {
-      return Promise.resolve(null);
-    } else {
+    
       return this.apiService.get<IPerson>(`crud/${id}`);
-    }
+    
   };
-  // one(id: string): IPerson {
-  //   return {
-  //     id: id,
-  //     firstName: 'name',
-  //   }
-  //   /*if (id === 'create') {
-  //     return Promise.resolve(null);
-  //   } else {
-  //     return this.apiService.get<IPerson>(`crud/${id}`);
-  //   }*/
-  // };
 
   save(person: IPerson) {
     return this.apiService.put(`crud/${person.id}`, person);

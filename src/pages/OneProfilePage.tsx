@@ -21,14 +21,14 @@ const fields: TypedField[] = [
             type: FieldType.Component,
             element: () =>(
             <AutoSizer style={{ height: 225 }}>
-              {({ width }) => (
+              {({ height, width }) => (
                 <div>
-                  <img width={200} height={250}  src="https://image.shutterstock.com/image-vector/blank-avatar-photo-place-holder-260nw-1114445501.jpg" alt="Profile pic" />
+                  <img src="https://image.shutterstock.com/image-vector/blank-avatar-photo-place-holder-260nw-1114445501.jpg" 
+                  alt="Profile pic" style={{ height: width, width: width }}  
+                  />
                 </div>
               )}
             </AutoSizer>) 
-            
-            // элемент autosizer посмотреть код в сторибук и на гитхабе в рапозитории
           },
           {
             type: FieldType.Rating,
@@ -62,7 +62,7 @@ const fields: TypedField[] = [
                 type: FieldType.Text,
                 outlined: false,
                 title: "Identificator",
-                name: "Identificator",
+                name: "id",
                 
               }
             ]
@@ -76,13 +76,13 @@ const fields: TypedField[] = [
                 type: FieldType.Text,
                 outlined: false,
                 title: "Outer ID",
-                name: "Outer-id",
+                name: "id",
                 
               },
             ]  
           },
           {
-            name: 'id',
+            name: 'firstName',
             type: FieldType.Text,
             title: 'First name',
             isInvalid({
@@ -97,7 +97,7 @@ const fields: TypedField[] = [
             description: 'Required',
           },
           {
-            name: 'id',
+            name: 'lastName',
             type: FieldType.Text,
             title: 'Last name',
             isInvalid({
@@ -121,38 +121,6 @@ const fields: TypedField[] = [
               "Male",
               "Female",
               "Other"
-            ]
-          },
-          {
-            type: FieldType.Group,
-            fieldBottomMargin: "0",
-            fields: [
-              {
-                type: FieldType.Group,
-                fieldBottomMargin: "0",
-                columns: "9",
-                fields: [
-                  {
-                    type: FieldType.Text,
-                    outlined: false,
-                    title: "Enable",
-                    name: "keyword",
-                    placeholder: "September"
-                  }
-                ]
-              },
-              {
-                type: FieldType.Group,
-                fieldBottomMargin: "0",
-                columns: "3",
-                fields: [
-                  {
-                    type: FieldType.Checkbox,
-                    title: "Code word",
-                    name: "keywordEnabled"
-                  }
-                ]
-              }
             ]
           },
           {
@@ -231,40 +199,56 @@ export const OneProfilePage = ({
     
     const handleChange = (data: IPerson, initial: boolean) => {
       if (!initial) {
-        console.log("CHANGE " + data)
         setData(data);
       }
+      console.log(data)
     };
     
-    const handleSave = async () => {
-        if (data) {
-          try {
-            if (id === 'create') {
-              await personService.create(data);
-              routerService.push(`/${data.id}`);
-            } else {
-              await personService.save(data);
-            }
-            // enqueueSnackbar('Saved');  // не знвю, где она, и что это вообще
-            setData(null);
-          } catch {
-            // enqueueSnackbar('Error acquired');
+    const handleSave = async () => {   //Вот это переделать на свой
+      if (data) {
+        try {
+          if (id === 'create') {
+            await personService.create(data);
+            routerService.push(`/${data.id}`);
+          } else {
+            await personService.save(data);
           }
+          // enqueueSnackbar('Saved');  // не знвю, где она, и что это вообще
+          setData(null);
+        } catch {
+          // enqueueSnackbar('Error acquired');
         }
-    };
+      }
+      console.log("SAVE")
+  };
+    // const handleSave = async () => {   //Вот это переделать на свой
+    //     if (data) {
+    //       try {
+    //         if (id === 'create') {
+    //           await personService.create(data);
+    //           routerService.push(`/${data.id}`);
+    //         } else {
+    //           await personService.save(data);
+    //         }
+    //         // enqueueSnackbar('Saved');  // не знвю, где она, и что это вообще
+    //         setData(null);
+    //       } catch {
+    //         // enqueueSnackbar('Error acquired');
+    //       }
+    //     }
+    //     console.log("SAVE")
+    // };
       
     const handleBack = () => {
       routerService.push(`/`);
     };
 
-    const handler = () => personService.one(id);
+    const handler = () => ioc.personService.one(id);
     
     // const handler = () => ({
     //     id: id,
         
     // });           
-    
-        // map id к онкретный, из готогрого я буру все. Там метод One. Это все в mobx
         
     return (
       <>
