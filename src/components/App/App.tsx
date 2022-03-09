@@ -2,7 +2,7 @@ import { Scaffold, Switch } from "react-declarative";
 import { inject, observer } from "mobx-react";
 
 import RouterService from "../../lib/RouterService";
-import ioc from "../../lib/base/ioc";
+import ioc from "../../lib/ioc";
 import options from "./options";
 import routes from "./routes";
 

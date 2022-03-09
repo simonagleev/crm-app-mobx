@@ -5,12 +5,17 @@ import {
 import { action, observable } from "mobx";
 
 import ApiService from "./ApiService";
-import { CC_ERROR } from "../../config";
+import { CC_ERROR } from "../config";
 import IPerson from "../model/IPerson";
-import RouterService from "../RouterService";
+import RouterService from "../lib/RouterService"
 import { makeObservable } from "mobx";
 
-export class PersonService {
+class PersonService {
+  static one(id: string) {
+    throw new Error('Method not implemented.');
+  }
+
+  state = new Map<string, string>();
 
   constructor(
     public apiService: ApiService,
@@ -27,7 +32,8 @@ export class PersonService {
       routerService: observable,
     });
   }
-
+  
+  
   async list(
     filters: Record<string, unknown>,
     pagination: ListHandlerPagination,
@@ -47,12 +53,24 @@ export class PersonService {
   };
 
   one(id: string): Promise<IPerson | null> {
+    console.log('ONE has happened')
     if (id === 'create') {
       return Promise.resolve(null);
     } else {
       return this.apiService.get<IPerson>(`crud/${id}`);
     }
   };
+  // one(id: string): IPerson {
+  //   return {
+  //     id: id,
+  //     firstName: 'name',
+  //   }
+  //   /*if (id === 'create') {
+  //     return Promise.resolve(null);
+  //   } else {
+  //     return this.apiService.get<IPerson>(`crud/${id}`);
+  //   }*/
+  // };
 
   save(person: IPerson) {
     return this.apiService.put(`crud/${person.id}`, person);

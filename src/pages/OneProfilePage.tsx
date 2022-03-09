@@ -1,62 +1,216 @@
-import { Breadcrumbs, FieldType, OneTyped, TypedField } from "react-declarative";
+import { AutoSizer, Breadcrumbs, FieldType, OneTyped, TypedField } from "react-declarative";
+import { useEffect, useState } from "react";
 
-import IPerson from "../lib/model/IPerson";
-import PersonService from "../lib/model/PersonService";
+import IPerson from "../model/IPerson";
+import PersonService from "../lib/PersonService";
 import RouterService from "../lib/RouterService"
+import ioc from "../lib/ioc";
 import { observer } from "mobx-react";
-import { useState } from "react";
 
 const fields: TypedField[] = [
-    {
-        type: FieldType.Rating,
-        title: 'Pcccc',
-      },
-    {
-      type: FieldType.Line,
-      title: 'Profile data',
-    },
-    {
-      name: 'id',
-      type: FieldType.Text,
-      title: 'First name',
-      isInvalid({
-        firstName,
-      }) {
-        if (!/\b([A-Za-z]{3,20}$)+/gm.test(firstName)) {
-          return "It should contain letters, from 3 to 20 symbols. Not empty";
-        } else {
-          return null;
-        }
-      },
-      description: 'Required',
-    },
-    {
-      name: 'lastName',
-      type: FieldType.Text,
-      title: 'Last name',
-      isInvalid({
-        lastName,
-      }) {
-        if (!/\b([A-Za-z]{3,20}$)+/gm.test(lastName)) {
-          return "It should contain letters, from 3 to 20 symbols";
-        } else {
-          return null;
-        }
-      },
-      description: 'Required',
-    },
-    {
-      name: 'gender',
-      type: FieldType.Text,
-      title: 'Gender',
-      description: 'Required',
-    },
-];
 
-
+  {
+    type: FieldType.Group,
+    fieldBottomMargin: "0",
+    fields: [
+      {
+        type: FieldType.Group,
+        columns: "2",
+        fields: [
+          {
+            type: FieldType.Component,
+            element: () =>(
+            <AutoSizer style={{ height: 225 }}>
+              {({ width }) => (
+                <div>
+                  <img width={200} height={250}  src="https://image.shutterstock.com/image-vector/blank-avatar-photo-place-holder-260nw-1114445501.jpg" alt="Profile pic" />
+                </div>
+              )}
+            </AutoSizer>) 
+            
+            // элемент autosizer посмотреть код в сторибук и на гитхабе в рапозитории
+          },
+          {
+            type: FieldType.Rating,
+            fieldBottomMargin: "0",
+            name: "rating",
+            defaultValue: 3
+          }
+        ]
+      },
+      {
+        type: FieldType.Group,
+        fieldBottomMargin: "0",
+        columns: "10",
+        fields: [
+          {
+            type: FieldType.Group,
+            fieldBottomMargin: "0",
+            columns: "2",
+            fields: [
+              {
+                type: FieldType.Switch,
+              },
+            ]
+          },
+          {
+            type: FieldType.Group,
+            fieldBottomMargin: "0",
+            columns:"5",
+            fields: [
+              {
+                type: FieldType.Text,
+                outlined: false,
+                title: "Identificator",
+                name: "Identificator",
+                
+              }
+            ]
+          },
+          {
+            type: FieldType.Group,
+            fieldBottomMargin: "0",
+            columns:"5",
+            fields: [
+              {
+                type: FieldType.Text,
+                outlined: false,
+                title: "Outer ID",
+                name: "Outer-id",
+                
+              },
+            ]  
+          },
+          {
+            name: 'id',
+            type: FieldType.Text,
+            title: 'First name',
+            isInvalid({
+                firstName,
+            }) {
+              if (!/\b([A-Za-z]{3,20}$)+/gm.test(firstName)) {
+                return "It should contain letters, from 3 to 20 symbols. Not empty";
+              } else {
+                return null;
+              }
+            },
+            description: 'Required',
+          },
+          {
+            name: 'id',
+            type: FieldType.Text,
+            title: 'Last name',
+            isInvalid({
+              lastName,
+            }) {
+              if (!/\b([A-Za-z]{3,20}$)+/gm.test(lastName)) {
+                return "It should contain letters, from 3 to 20 symbols";
+              } else {
+                return null;
+              }
+            },
+            description: 'Required',
+          },
+          
+          {
+            type: FieldType.Combo,
+            title: "Gender",
+            placeholder: "Choose",
+            name: "gender",
+            itemList: [
+              "Male",
+              "Female",
+              "Other"
+            ]
+          },
+          {
+            type: FieldType.Group,
+            fieldBottomMargin: "0",
+            fields: [
+              {
+                type: FieldType.Group,
+                fieldBottomMargin: "0",
+                columns: "9",
+                fields: [
+                  {
+                    type: FieldType.Text,
+                    outlined: false,
+                    title: "Enable",
+                    name: "keyword",
+                    placeholder: "September"
+                  }
+                ]
+              },
+              {
+                type: FieldType.Group,
+                fieldBottomMargin: "0",
+                columns: "3",
+                fields: [
+                  {
+                    type: FieldType.Checkbox,
+                    title: "Code word",
+                    name: "keywordEnabled"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            type: FieldType.Group,
+            fieldBottomMargin: "0",
+            columns: "5",
+            fields: [
+              {
+                type: FieldType.Line,
+                title: "Contact Data"
+              },
+              {
+                name: 'email',
+                type: FieldType.Text,
+                title: 'E-mail',
+              },
+              {
+                name: 'facebook',
+                type: FieldType.Text,
+                title: 'Facebook',
+              },
+              {
+                name: 'instagram',
+                type: FieldType.Text,
+                title: 'Instagram',
+              },
+              {
+                name: 'whatsapp',
+                type: FieldType.Text,
+                title: 'Whatsapp',
+              },
+              {
+                name: 'telegram',
+                type: FieldType.Text,
+                title: 'Telegram',
+              },
+            ]
+          },
+          {
+            type: FieldType.Group,
+            fieldBottomMargin: "0",
+            columns: "5",
+            fields: [
+              {
+                type: FieldType.Line,
+                title: "Chatting History"
+              },
+            ]  
+          }
+        ]
+      }
+    ]
+  }
+]  
+    
 
 interface IOnePageProps {
-   id: string;
+   id: string;  
 }
   
 interface IOnePagePrivate {
@@ -71,13 +225,17 @@ export const OneProfilePage = ({
     id,
   }: IOnePageProps & IOnePagePrivate) => {
   
+    
     const [ data, setData ] = useState<IPerson | null>(null);
+    
     
     const handleChange = (data: IPerson, initial: boolean) => {
       if (!initial) {
+        console.log("CHANGE " + data)
         setData(data);
       }
     };
+    
     const handleSave = async () => {
         if (data) {
           try {
@@ -93,26 +251,34 @@ export const OneProfilePage = ({
             // enqueueSnackbar('Error acquired');
           }
         }
-      };
+    };
+      
     const handleBack = () => {
       routerService.push(`/`);
     };
-    const handler = () => ({
-        id: id,
-    });            // Вот тут идет привязка к конкретному ID из ProfilesPage. 
+
+    const handler = () => personService.one(id);
+    
+    // const handler = () => ({
+    //     id: id,
+        
+    // });           
+    
+        // map id к онкретный, из готогрого я буру все. Там метод One. Это все в mobx
+        
     return (
       <>
         <Breadcrumbs
             title="Profiles"
-            subtitle="???"
+            subtitle={id}
             onSave={handleSave}    //не работает функция
             onBack={handleBack}
         />
        <OneTyped
             fields={fields}
             handler={handler}                    // еси включить, то пропадает нижняя форма (TepedField)
-            // fallback={personService.fallback}   // с этим вообще ниче не работает
-            // change={handleChange}
+            fallback={ioc.personService.fallback}   
+            change={handleChange}        // с этим не может найти one-page
          />
        
       </>

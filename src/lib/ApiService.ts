@@ -1,9 +1,9 @@
-import { CC_DENIED, CC_ERROR, CC_ORIGIN } from "../../config";
+import { CC_DENIED, CC_ERROR, CC_ORIGIN } from "../config";
 
-import RouterService from "../RouterService";
+import RouterService from "./RouterService";
 import SessionService from "./SessionService";
 import { action } from "mobx";
-import errorData from "../../utils/errorData";
+import errorData from "../utils/errorData";
 import { makeObservable } from "mobx";
 import { v4 as uuidv4 } from 'uuid';
 
