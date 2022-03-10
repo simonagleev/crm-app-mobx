@@ -150,7 +150,7 @@ export const ProfilesPage = ({
     const apiRef = useRef<IListApi>(null);
 
     const handleRemove = async (person: IPerson) => {
-      await ioc.personService.remove(person);
+      // await ioc.personService.remove(person);        //REMOVE from personservice
       await apiRef.current?.reload();
     };
   
@@ -163,7 +163,7 @@ export const ProfilesPage = ({
 
 
     const handleCreate = () => {
-      routerService.push(`/one-profile/create`);
+      ioc.routerService.push(`/one-profile/create`);
     };     
 
     return ( 

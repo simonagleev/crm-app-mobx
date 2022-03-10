@@ -1,11 +1,11 @@
 export interface IPerson {
     id: string;
-    lastName?: string;
+    lastName: string;
     firstName: string;
+    age: string;
     gender?: string
     email?: string
     country?: string
-    age?: string;
     phone?: string
     active?: boolean
 }

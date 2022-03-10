@@ -201,35 +201,45 @@ export const OneProfilePage = ({
       if (!initial) {
         setData(data);
       }
-      console.log('TEST handlechange из oneprofilepage')
+      console.log('TEST handleCHANGE из oneprofilepage')
       console.log(data)
     };
     
-    const handleSave = async () => {   //Вот это переделать на свой
+
+    
+    const handleSave = async () => {   
+     
+      console.log('HandleSAVE data')
+      console.log(data)
+      
       if (data) {
-        try {
-          if (id === 'create') {
-            await personService.create(data);
-            routerService.push(`/${data.id}`);
-          } else {
-            await personService.save(data);
-          }
-          // enqueueSnackbar('Saved');  // не знвю, где она, и что это вообще
-          setData(null);
-        } catch {
-          // enqueueSnackbar('Error acquired');
+        if(id === 'create'){
+          await ioc.personService.create(data);
+          routerService.push(`/${data.id}`);
+        } else {
+          ioc.personService.save(data)
+          console.log('DATA IF happened')
+          console.log(data)
         }
+        
+      } else { 
+        console.log("NOTHING CHANGED")    
       }
-      console.log("SAVE")
-  };
+        
+    }
+      
+  
     // const handleSave = async () => {   //Вот это переделать на свой
+    //   console.log("SAVE")
+    //   console.log(data)
     //     if (data) {
     //       try {
     //         if (id === 'create') {
-    //           await personService.create(data);
+    //           // await personService.create(data);
     //           routerService.push(`/${data.id}`);
     //         } else {
     //           await personService.save(data);
+    //           console.log("SAVE2 else")
     //         }
     //         // enqueueSnackbar('Saved');  // не знвю, где она, и что это вообще
     //         setData(null);
@@ -237,11 +247,10 @@ export const OneProfilePage = ({
     //         // enqueueSnackbar('Error acquired');
     //       }
     //     }
-    //     console.log("SAVE")
     // };
       
     const handleBack = () => {
-      routerService.push(`/`);
+      ioc.routerService.push(`/`);
     };
 
     const handler = () => ioc.personService.one(id);
