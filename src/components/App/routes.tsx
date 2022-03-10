@@ -1,3 +1,4 @@
+import ChartPage from '../../pages/ChartPage'
 import HomePage from '../../pages/HomePage';
 import {
 ISwitchItem,
@@ -17,7 +18,11 @@ export const routes: ISwitchItem[] = [
     {
       path: '/one-profile/:id',
       component: OneProfilePage,
-     },
+    },
+    {
+      path: '/chart',
+      component: ChartPage,
+    },
   ];
   
   export default routes;

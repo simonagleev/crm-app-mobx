@@ -159,7 +159,7 @@ export const ProfilesPage = ({
       console.log('TEST NAME: ' + person.firstName)
       ioc.routerService.push(`/one-profile/${person.id}`);      //переход пo конкретному ID
     };
-//   ${person.id}
+   //   ${person.id}
 
 
     const handleCreate = () => {

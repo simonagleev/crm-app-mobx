@@ -12,7 +12,9 @@ export const App = () => {
           ioc.routerService.push('/');
         } else if (name === 'profiles-list') {
           ioc.routerService.push('/profiles-list');
-        } 
+        } else if (name === 'chart') {
+          ioc.routerService.push('/chart');
+        }
       };
       return (
        <Scaffold onOptionClick={handleMenuClick} title="InfoLink CRM" options={options}>

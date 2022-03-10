@@ -9,6 +9,10 @@ export const options: IMenuGroup[] = [
         label: 'Profiles',
         name: 'profiles-list',
     },
+    {
+        label: 'Chart',
+        name: 'chart',
+    },
 ];
 
 export default options;
