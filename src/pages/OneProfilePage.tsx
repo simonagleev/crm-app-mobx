@@ -1,4 +1,4 @@
-import { AutoSizer, Breadcrumbs, FieldType, OneTyped, TypedField } from "react-declarative";
+import { AutoSizer, Breadcrumbs, FieldType, One, TypedField } from "react-declarative";
 import { useEffect, useState } from "react";
 
 import IPerson from "../model/IPerson";
@@ -201,6 +201,7 @@ export const OneProfilePage = ({
       if (!initial) {
         setData(data);
       }
+      console.log('TEST handlechange из oneprofilepage')
       console.log(data)
     };
     
@@ -258,7 +259,7 @@ export const OneProfilePage = ({
             onSave={handleSave}    //не работает функция
             onBack={handleBack}
         />
-       <OneTyped
+       <One
             fields={fields}
             handler={handler}                    // еси включить, то пропадает нижняя форма (TepedField)
             fallback={ioc.personService.fallback}   

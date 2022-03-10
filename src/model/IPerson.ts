@@ -5,7 +5,7 @@ export interface IPerson {
     gender?: string
     email?: string
     country?: string
-    age?: number;
+    age?: string;
     phone?: string
     active?: boolean
 }

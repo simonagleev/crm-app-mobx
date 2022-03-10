@@ -36,11 +36,9 @@ class PersonService {
     return profiles;    //Раньше тут былв логика получения данных с сервера, а сейчас просто из локального файла profiles.json
   };
 
-  one(id: string): Promise<IPerson | null> {
-    console.log('ONE has happened')
-    
-      return this.apiService.get<IPerson>(`crud/${id}`);
-    
+  one(id: string) {
+    return profiles.find((profile) => profile.id === id) || null
+   
   };
 
   save(person: IPerson) {
