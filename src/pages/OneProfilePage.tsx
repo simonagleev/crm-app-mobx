@@ -1,14 +1,13 @@
 import { AutoSizer, Breadcrumbs, FieldType, One, TypedField } from "react-declarative";
-import { useEffect, useState } from "react";
 
 import IPerson from "../model/IPerson";
 import PersonService from "../lib/PersonService";
 import RouterService from "../lib/RouterService"
 import ioc from "../lib/ioc";
 import { observer } from "mobx-react";
+import { useState } from "react";
 
 const fields: TypedField[] = [
-
   {
     type: FieldType.Group,
     fieldBottomMargin: "0",
@@ -204,14 +203,8 @@ export const OneProfilePage = ({
       console.log('TEST handleCHANGE из oneprofilepage')
       console.log(data)
     };
-    
-
-    
+        
     const handleSave = async () => {   
-     
-      console.log('HandleSAVE data')
-      console.log(data)
-      
       if (data) {
         if(id === 'create'){
           await ioc.personService.create(data);
@@ -221,60 +214,31 @@ export const OneProfilePage = ({
           console.log('DATA IF happened')
           console.log(data)
         }
-        
       } else { 
         console.log("NOTHING CHANGED")    
-      }
-        
+      }   
     }
-      
-  
-    // const handleSave = async () => {   //Вот это переделать на свой
-    //   console.log("SAVE")
-    //   console.log(data)
-    //     if (data) {
-    //       try {
-    //         if (id === 'create') {
-    //           // await personService.create(data);
-    //           routerService.push(`/${data.id}`);
-    //         } else {
-    //           await personService.save(data);
-    //           console.log("SAVE2 else")
-    //         }
-    //         // enqueueSnackbar('Saved');  // не знвю, где она, и что это вообще
-    //         setData(null);
-    //       } catch {
-    //         // enqueueSnackbar('Error acquired');
-    //       }
-    //     }
-    // };
       
     const handleBack = () => {
       ioc.routerService.push(`/`);
     };
 
-    const handler = () => ioc.personService.one(id);
-    
-    // const handler = () => ({
-    //     id: id,
-        
-    // });           
+    const handler = () => ioc.personService.one(id);       
         
     return (
       <>
         <Breadcrumbs
             title="Profiles"
             subtitle={id}
-            onSave={handleSave}    //не работает функция
+            onSave={handleSave}    
             onBack={handleBack}
         />
        <One
             fields={fields}
-            handler={handler}                    // еси включить, то пропадает нижняя форма (TepedField)
+            handler={handler}                    
             fallback={ioc.personService.fallback}   
-            change={handleChange}        // с этим не может найти one-page
+            change={handleChange}        
          />
-       
       </>
     );
 };

@@ -2,29 +2,37 @@
 
 import { useEffect, useRef } from 'react';
 
+import { AutoSizer } from 'react-declarative';
 import Chart from 'chart.js/auto';
 
-// const canvas = document.createElement('canvas') // canvasRef.current
-// const ctx = canvas.getContext('2d');
-
-
-
+interface IBarChartProps {
+    height: number,  
+    width: number
+ }
  
-export const BarChart = () => {
-    const elementRef = useRef<HTMLCanvasElement>(null);
+export const BarChart = ({
+    height = 100,
+    width = 100,
+}) => {
+    const rootRef = useRef<HTMLDivElement>(null);
     
     useEffect(() => {
-        const canvasElement = elementRef.current!;
-        console.log(canvasElement); // logs <div>I'm an element</div>
+        const rootElement = rootRef.current!;
+        if (rootElement.childNodes.length) {
+            rootElement.removeChild(rootElement.lastChild!);
+        }
+        const canvasElement = document.createElement('canvas');
+        canvasElement.height = height;
+        canvasElement.width = width;
+        rootElement.appendChild(canvasElement)       
         const ctx = canvasElement.getContext('2d');
-        console.log(ctx);
         const myChart = new Chart(ctx!, {
-            type: 'bar',
+            type: 'doughnut',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                
                 datasets: [{
                     label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
+                    data: [12, 19, 30, 5, 2, 3],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -54,15 +62,17 @@ export const BarChart = () => {
         });
         console.log(myChart);
 
-    }, []);
+        return () => { myChart.clear() };
+
+    }, [height, width]); // Сюда передать пропс, в зависимости от изменения которого будет обновляться useEffect
+    
     
     
 
     return (
-      <div>
-        <canvas ref={elementRef} id="myChart" width="400" height="400"></canvas>
-      </div>
-    );
-  }
+        <div ref={rootRef}></div>         
+    )
+}
 
   export default BarChart;
+

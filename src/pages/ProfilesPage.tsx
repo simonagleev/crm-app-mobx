@@ -18,20 +18,6 @@ import ioc from '../lib/ioc';
 import { observer } from 'mobx-react';
 import { useRef } from 'react';
 
-// Это handler вместо данных с сервера
-// export const handler: IPerson[] = [
-//   { id: '1', lastName: 'Snow', firstName: 'Jon', gender: 'M', email: 'hahah@mail.ru', country: 'Germany', age: 35, phone: '88005553535', active: true },
-//   { id: '2', lastName: 'Lannister', firstName: 'Cersei', gender: 'F', email: 'hahah@mail.ru', country: 'Germany', age: 42, phone: '88005553535', active: true },
-//   { id: '3', lastName: 'Lannister', firstName: 'Jaime', gender: 'M', email: 'hahah@mail.ru', country: 'Germany', age: 45, phone: '88005553535', active: true },
-//   { id: '4', lastName: 'Stark', firstName: 'Arya', gender: 'M', email: 'hahah@mail.ru', country: 'Germany', age: 16, phone: '88005553535', active: true },
-//   { id: '5', lastName: 'Targaryen', firstName: 'Daenerys', gender: 'F', email: 'hahah@mail.ru', country: 'Germany', age: 34, phone: '88005553535', active: true },
-//   { id: '6', lastName: 'Melisandre', firstName: 'null', gender: 'M', email: 'hahah@mail.ru', country: 'Germany', age: 150, phone: '88005553535', active: true },
-//   { id: '7', lastName: 'Clifford', firstName: 'Ferrara', gender: 'M', email: 'hahah@mail.ru', country: 'Germany', age: 44, phone: '88005553535', active: true },
-//   { id: '8', lastName: 'Frances', firstName: 'Rossini', gender: 'M', email: 'hahah@mail.ru', country: 'Germany', age: 36, phone: '88005553535', active: true },
-//   { id: '9', lastName: 'Roxie', firstName: 'Harvey', gender: 'F', email: 'hahah@mail.ru', country: 'Germany', age: 65, phone: '88005553535', active: true },
-// ];
-
-
 const filters: TypedField[] = [
     {
       type: FieldType.Text,
@@ -43,7 +29,7 @@ const filters: TypedField[] = [
       name: 'lastName',
       title: 'Last name',
     }
-  ];
+];
 
 const columns: IColumn[] = [
     {
