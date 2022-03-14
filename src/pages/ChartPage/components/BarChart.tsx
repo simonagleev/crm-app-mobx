@@ -2,14 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 
-import { AutoSizer } from 'react-declarative';
 import Chart from 'chart.js/auto';
 
-interface IBarChartProps {
-    height: number,  
-    width: number
- }
- 
 export const BarChart = ({
     height = 100,
     width = 100,

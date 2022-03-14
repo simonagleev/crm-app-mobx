@@ -1,7 +1,7 @@
 import { AutoSizer, Breadcrumbs, FieldType, One } from 'react-declarative';
 
 import BarChart from './components/BarChart';
-import BarChartLight from './components/BarChartLight';
+import { Circle } from './components/Circle';
 import TypedField from 'react-declarative/model/TypedField';
 
 const createCard = (): TypedField => ({
@@ -41,72 +41,12 @@ const fields: TypedField[] = [
                         outlined: false,
                         title: "Identificator",
                         name: "id",
-                    }
+                    },
                 ]
             }
         ]
     }
 ]
-
-//                   {
-//                     type: FieldType.Component,
-//                     element: () =>(
-//                         <AutoSizer style={{ height: 200 }}>
-//                             {({ height, width }) => (
-//                                 <div style={{ height: height, width: width }}>
-//                                    <BarChart  /> 
-//                                 </div>
-//                             )}
-//                         </AutoSizer> 
-//                     )
-//                   },
-//                 //   {
-//                 //     type: FieldType.Text,
-//                 //     columns: "6",
-//                 //     outlined: true,
-//                 //     title: "Outer ID",
-//                 //     name: "id",
-
-//                 //   }
-//                 ]
-//             },
-//             {
-//                 type: FieldType.Group,
-//                 columns: "6",
-//                 fields: [
-//                   {
-//                     type: FieldType.Component,
-// element: () =>(
-//     <AutoSizer>
-//         {({ height, width }) => (
-//             <BarChartLight height={height} width={width} /> 
-//         )}
-//     </AutoSizer>                      
-// )
-//                   },
-//                 ]
-//             }
-//         ]
-//     }
-// ]
-//
-
-
-// const fields: TypedField[] = [
-//     createCard(),
-//     {
-//         type: FieldType.Text,
-//         outlined: false,
-//         title: "Identificator",
-//         name: "id",
-//     }
-// ];
-
-
-
-interface IOneChartProps {
-    height: number,
-}
 
 export const ChartPage = () => (
     <>
@@ -116,6 +56,9 @@ export const ChartPage = () => (
         />
         <One
             fields={fields}
+        />
+        <Circle 
+            progress={90}
         />
     </>
 )
