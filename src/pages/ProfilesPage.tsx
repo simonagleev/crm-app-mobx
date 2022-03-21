@@ -7,7 +7,6 @@ import {
      ListTyped,
      SelectionMode
 } from 'react-declarative';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 
 import IColumn from 'react-declarative/model/IColumn';
 import IPerson from '../model/IPerson';
@@ -86,9 +85,9 @@ const columns: IColumn[] = [
       sortable: false,
       width: '150px',
     },
-  ];
+];
 
-  const actions: IListAction[] = [
+const actions: IListAction[] = [
   {
     type: ActionType.Add,
   },

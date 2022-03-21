@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 
+import { AutoSizer } from 'react-declarative';
 import Chart from 'chart.js/auto';
 
 export const BarChart = ({
