@@ -1,9 +1,7 @@
+import { Action, Blocker, BrowserHistory, Listener, Location, State, To, createBrowserHistory } from "history";
+import { action, observable } from "mobx";
+
 import { makeObservable } from "mobx";
-import { observable, action } from "mobx";
-
-import { Action, Blocker, Listener, State, To, Location, BrowserHistory } from "history";
-
-import { createBrowserHistory } from "history";
 
 const browserHistory = createBrowserHistory();
 
@@ -11,7 +9,8 @@ export class RouterService implements BrowserHistory {
 
   location: Location = null as never;
   action: Action = null as never;
-
+  
+  
   constructor() {
     makeObservable(this, {
       location: observable,
@@ -22,7 +21,6 @@ export class RouterService implements BrowserHistory {
       go: action.bound,
       back: action.bound,
       forward: action.bound,
-      listen: action.bound,
       block: action.bound,
       updateState: action.bound,
     });

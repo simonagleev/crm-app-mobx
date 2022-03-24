@@ -1,21 +1,22 @@
+import { ListHandler, inject } from 'react-declarative';
 import { action, computed, observable } from "mobx";
 
-import { CC_ERROR } from "../config";
-import IPerson from "../model/IPerson";
-import { ListHandler } from 'react-declarative';
-import RouterService from "../lib/RouterService"
+import { CC_ERROR } from "../../config";
+import IPerson from "../../model/IPerson";
+import RouterService from "./RouterService"
+import TYPES from "../types";
 import { makeObservable } from "mobx";
-import profiles from '../mock/profiles'
+import profiles from '../../mock/profiles'
 
-class PersonService {
+export class PersonService {
   static one(id: string) {
     throw new Error('Method not implemented.');
   }
 
   // state = new Map<string, string>();
-  
+  routerService = inject<RouterService>(TYPES.routerService)
   constructor(
-    public routerService: RouterService,
+    // public routerService: RouterService,
   ) {
     makeObservable(this, {
       list: action.bound,
@@ -35,7 +36,7 @@ class PersonService {
   get profilesList() {
     return [...this.innerProfiles.values()];
   }
-  
+
   list: ListHandler = (data, {
     limit,
     offset,
@@ -61,9 +62,9 @@ class PersonService {
     return this.innerProfiles.set(person.id, person);
   }
 
-  // async remove(person: IPerson) {
-  //   await this.apiService.delete(`crud/${person.id}`);
-  // };
+  async remove(person: IPerson) {
+    // await this.apiService.delete(`crud/${person.id}`);
+  };
 
   fallback(e: Error) {
     this.routerService.push(CC_ERROR);
