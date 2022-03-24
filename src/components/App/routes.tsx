@@ -9,19 +9,19 @@ import ProfilesPage from '../../pages/ProfilesPage';
 export const routes: ISwitchItem[] = [
     {
       path: '/',
-      component: HomePage,
+      element: HomePage,
     },
     {
       path: '/profiles-list',
-      component: ProfilesPage,
+      element: ProfilesPage,
     },
     {
       path: '/one-profile/:id',
-      component: OneProfilePage,
+      element: OneProfilePage,
     },
     {
       path: '/chart',
-      component: ChartPage,
+      element: ChartPage,
     },
   ];
   

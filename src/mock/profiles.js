@@ -1,4 +1,4 @@
-[
+export default [
     {
         "id": "b4a5b7e7-c092-4b15-b0c4-925c7ef6700c",
         "firstName": "Icieaa",
@@ -197,7 +197,7 @@
         "firstName": "Henriette",
         "lastName": "Tillman"
     },
-    {
+    /*{
         "id": "6c78a18c-262c-414e-b801-d770a40f7d9c",
         "age": "90885",
         "firstName": "Nella",
@@ -59950,5 +59950,5 @@
         "firstName": "qqq",
         "lastName": "qqqq",
         "age": "12"
-    }
+    }*/
 ]

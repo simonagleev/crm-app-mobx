@@ -1,10 +1,11 @@
-import { action, observable } from "mobx";
+import { action, computed, observable } from "mobx";
 
 import { CC_ERROR } from "../config";
 import IPerson from "../model/IPerson";
+import { ListHandler } from 'react-declarative';
 import RouterService from "../lib/RouterService"
 import { makeObservable } from "mobx";
-import profiles from '../mock/profiles.json'
+import profiles from '../mock/profiles'
 
 class PersonService {
   static one(id: string) {
@@ -22,6 +23,7 @@ class PersonService {
       fallback: action.bound,
       one: action.bound,
       save: action.bound,
+      profilesList: computed,
       // create: action.bound,
       routerService: observable,
       innerProfiles: observable
@@ -29,10 +31,19 @@ class PersonService {
   }
   
   innerProfiles = new Map(profiles.map(p => [p.id, p]))
+
+  get profilesList() {
+    return [...this.innerProfiles.values()];
+  }
   
-  async list(   //Тут берем все данные для списка людей
-  ) {  
-    return [...this.innerProfiles.values()];    //Раньше тут былв логика получения данных с сервера, а сейчас просто из локального файла profiles.json
+  list: ListHandler = (data, {
+    limit,
+    offset,
+  }) => {
+    return {
+      total: this.profilesList.length,
+      rows: this.profilesList.slice(offset, limit + offset),
+    };
   };
 
   one(id: string) {
