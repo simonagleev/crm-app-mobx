@@ -14,7 +14,7 @@ export const routes: ISwitchItem[] = [
       element: ProfilesPage,
     },
     {
-      path: '/one-profile/:id',
+      path: '/profiles-list/:id',
       element: OneProfilePage,
     },
     {

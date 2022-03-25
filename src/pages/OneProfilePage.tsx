@@ -171,15 +171,13 @@ export const OneProfilePage = ({
     if (!initial) {
       setData(data);
     }
-    console.log('TEST handleCHANGE из oneprofilepage')
-    console.log(data)
   };
 
   const handleSave = async () => {
     if (data) {
       data.id = id;
       await ioc.personService.save(data);
-      ioc.routerService.push(`/one-profile/${data.id}`);
+      ioc.routerService.push(`/profiles-list/${data.id}`);
       ioc.alertService.notify('Saved');
     } else {
       console.log("NOTHING CHANGED")

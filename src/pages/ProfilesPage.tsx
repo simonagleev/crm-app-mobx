@@ -103,7 +103,6 @@ const rowActions = [
   {
     label: 'Remove person',
     action: 'remove-action',
-    //   icon: Delete,
   },
 ];
 
@@ -115,8 +114,6 @@ interface IFilterData {
   lastName: string;
 }
 
-interface IListPageProps {
-}
 
 interface IListPagePrivate {
   routerService: RouterService;
@@ -134,19 +131,16 @@ export const ProfilesPage = () => {
 
   const handleAction = (name: string) => {
     if(name ==='create'){
-      ioc.routerService.push(`/one-profile/create`);
+      ioc.routerService.push(`/profiles-list/create`);
     }
   }
 
   const handleClick = (person: IPerson) => {
     console.log(person)
     console.log('TEST NAME: ' + person.firstName)
-    ioc.routerService.push(`/one-profile/${person.id}`);      //переход пo конкретному ID
+    ioc.routerService.push(`/profiles-list/${person.id}`);      //переход пo конкретному ID
   };
 
-  const handleCreate = () => {
-    // ioc.routerService.push(`/one-profile/create`);
-  };
 
   return (
     <ListTyped<IFilterData, IPerson>
