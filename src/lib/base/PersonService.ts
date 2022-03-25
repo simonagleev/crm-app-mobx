@@ -65,21 +65,12 @@ export class PersonService {
   }
 
   async remove(person: IPerson) {
-    console.log('REMOVE')
-    console.log(person.id)
     this.innerProfiles.delete(person.id)
   };
 
   delete(rows: RowId[]) {
-    // for(let i = 0; i<= rows.length; i++) {
-    //   this.innerProfiles.delete(rows[0])
-    //   console.log('i')
-    //   console.log(i)
-    // }
     rows.forEach(i => {
       this.innerProfiles.delete(i)
-      console.log('i')
-      console.log(typeof(i))
     })
   };
 
