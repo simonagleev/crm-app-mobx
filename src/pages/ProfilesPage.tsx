@@ -89,14 +89,11 @@ const columns: IColumn[] = [
 
 const actions: IListAction[] = [
   {
-    type: ActionType.Add,
-  },
-  {
     type: ActionType.Menu,
     options: [
       {
+        action: 'create',
         label: 'Create new person',
-        // icon: Add,
       }
     ]
   },
@@ -135,6 +132,12 @@ export const ProfilesPage = () => {
     apiRef.current?.reload();
   };
 
+  const handleAction = (name: string) => {
+    if(name ==='create'){
+      ioc.routerService.push(`/one-profile/create`);
+    }
+  }
+
   const handleClick = (person: IPerson) => {
     console.log(person)
     console.log('TEST NAME: ' + person.firstName)
@@ -161,7 +164,7 @@ export const ProfilesPage = () => {
       fallback={ioc.personService.fallback}
       onRowAction={handleRemove}
       onRowClick={handleClick}
-      onAction={handleCreate}
+      onAction={handleAction}
     />
   );
 };

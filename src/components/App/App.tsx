@@ -1,10 +1,14 @@
 import { Scaffold, Switch } from "react-declarative";
-import { inject, observer } from "mobx-react";
 
-import RouterService from "../../lib/RouterService";
 import ioc from "../../lib/ioc";
+import { observer } from "mobx-react";
 import options from "./options";
 import routes from "./routes";
+
+// import RouterService from "../../lib/RouterService";
+
+
+
 
 export const App = () => {
     const handleMenuClick = (name: string) => {

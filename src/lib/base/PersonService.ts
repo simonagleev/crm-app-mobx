@@ -1,23 +1,25 @@
 import { ListHandler, inject } from 'react-declarative';
 import { action, computed, observable } from "mobx";
 
+import AlertService from './AlertService';
 import { CC_ERROR } from "../../config";
 import IPerson from "../../model/IPerson";
 import RouterService from "./RouterService"
 import TYPES from "../types";
 import { makeObservable } from "mobx";
 import profiles from '../../mock/profiles'
+import { v4 as uuid } from 'uuid';
 
 export class PersonService {
   static one(id: string) {
     throw new Error('Method not implemented.');
   }
 
-  // state = new Map<string, string>();
   routerService = inject<RouterService>(TYPES.routerService)
-  constructor(
-    // public routerService: RouterService,
-  ) {
+  alertService = inject<AlertService>(TYPES.alertService)
+
+  
+  constructor() {
     makeObservable(this, {
       list: action.bound,
       // remove: action.bound,
@@ -48,17 +50,18 @@ export class PersonService {
   };
 
   one(id: string) {
-    return this.innerProfiles.get(id) || null;
+    if (id === 'create') {
+      return null;
+    } else {
+      return this.innerProfiles.get(id) || null;
+    }
   };
 
-  save(person: IPerson) {
-    console.log("SAVE PErson:")
-    console.log(person)
-    
-    return this.innerProfiles.set(person.id, person);
-  }
-
-  create(person: IPerson) {
+  async save(person: IPerson) {
+    if (person.id === 'create') {
+      person.id = uuid();
+    }
+    // await fetch(...
     return this.innerProfiles.set(person.id, person);
   }
 

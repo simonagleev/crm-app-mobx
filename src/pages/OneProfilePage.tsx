@@ -1,8 +1,6 @@
 import { AutoSizer, Breadcrumbs, FieldType, One, TypedField } from "react-declarative";
 
 import IPerson from "../model/IPerson";
-import PersonService from "../lib/base/PersonService";
-import RouterService from "../lib/base/RouterService"
 import ioc from "../lib/ioc";
 import { observer } from "mobx-react";
 import { useState } from "react";
@@ -84,30 +82,12 @@ const fields: TypedField[] = [
             name: 'firstName',
             type: FieldType.Text,
             title: 'First name',
-            isInvalid({
-              firstName,
-            }) {
-              if (!/\b([A-Za-z]{3,20}$)+/gm.test(firstName)) {
-                return "It should contain letters, from 3 to 20 symbols. Not empty";
-              } else {
-                return null;
-              }
-            },
             description: 'Required',
           },
           {
             name: 'lastName',
             type: FieldType.Text,
             title: 'Last name',
-            isInvalid({
-              lastName,
-            }) {
-              if (!/\b([A-Za-z]{3,20}$)+/gm.test(lastName)) {
-                return "It should contain letters, from 3 to 20 symbols";
-              } else {
-                return null;
-              }
-            },
             description: 'Required',
           },
 
@@ -179,16 +159,9 @@ interface IOnePageProps {
   id: string;
 }
 
-interface IOnePagePrivate {
-  personService: PersonService;
-  routerService: RouterService;
-}
-
-
 export const OneProfilePage = ({
-  routerService,
   id,
-}: IOnePageProps & IOnePagePrivate) => {
+}: IOnePageProps) => {
 
 
   const [data, setData] = useState<IPerson | null>(null);
@@ -204,14 +177,10 @@ export const OneProfilePage = ({
 
   const handleSave = async () => {
     if (data) {
-      if (id === 'create') {
-        await ioc.personService.create(data);
-        routerService.push(`/${data.id}`);
-      } else {
-        ioc.personService.save(data)
-        console.log('DATA IF happened')
-        console.log(data)
-      }
+      data.id = id;
+      await ioc.personService.save(data);
+      ioc.routerService.push(`/one-profile/${data.id}`);
+      ioc.alertService.notify('Saved');
     } else {
       console.log("NOTHING CHANGED")
     }
@@ -227,6 +196,7 @@ export const OneProfilePage = ({
     <>
       <Breadcrumbs
         title="Profiles"
+        disabled={!data}
         subtitle={id}
         onSave={handleSave}
         onBack={handleBack}
@@ -235,7 +205,7 @@ export const OneProfilePage = ({
         fields={fields}
         handler={handler}
         fallback={ioc.personService.fallback}
-        change={handleChange}
+        onChange={handleChange}
       />
     </>
   );
