@@ -5,17 +5,16 @@ import {
   IListAction,
   IListApi,
   ListTyped,
-  SelectionMode
+  RowId,
+  SelectionMode,
 } from 'react-declarative';
+import { useRef, useState } from 'react';
 
 import IColumn from 'react-declarative/model/IColumn';
 import IPerson from '../model/IPerson';
-import PersonService from '../lib/base/PersonService';
-import RouterService from '../lib/base/RouterService';
 import TypedField from 'react-declarative/model/TypedField';
 import ioc from '../lib/ioc';
 import { observer } from 'mobx-react';
-import { useRef } from 'react';
 
 const filters: TypedField[] = [
   {
@@ -59,13 +58,13 @@ const columns: IColumn[] = [
     type: ColumnType.Text,
     field: 'phone',
     headerName: 'Phone number',
-    width: '10%',
+    width: '15%',
   },
   {
     type: ColumnType.Text,
     field: 'email',
     headerName: 'Email',
-    width: '10%',
+    width: '15%',
   },
   {
     type: ColumnType.Text,
@@ -77,13 +76,13 @@ const columns: IColumn[] = [
     type: ColumnType.CheckBox,
     field: 'active',
     headerName: 'Active',
-    width: '10%',
+    width: '5%',
   },
   {
     type: ColumnType.Action,
     headerName: 'Actions',
     sortable: false,
-    width: '10%',
+    width: '5%',
   },
 ];
 
@@ -93,15 +92,19 @@ const actions: IListAction[] = [
     options: [
       {
         action: 'create',
-        label: 'Create new person',
-      }
+        label: 'Create a new person',
+      },
+      {
+        action: 'delete',
+        label: 'Delete selected',
+      },
     ]
   },
 ];
 
 const rowActions = [
   {
-    label: 'Remove person',
+    label: 'Remove this person',
     action: 'remove-action',
   },
 ];
@@ -114,15 +117,11 @@ interface IFilterData {
   lastName: string;
 }
 
-
-interface IListPagePrivate {
-  routerService: RouterService;
-  personService: PersonService;
-}
-
 export const ProfilesPage = () => {
 
   const apiRef = useRef<IListApi>(null);
+
+  const [selectedRows, setSelectedRows] = useState<RowId[]>([])
 
   const handleRemove = async (person: IPerson) => {
     await ioc.personService.remove(person);        //REMOVE from personservice
@@ -130,8 +129,13 @@ export const ProfilesPage = () => {
   };
 
   const handleAction = (name: string) => {
-    if(name ==='create'){
+    if (name === 'create'){
       ioc.routerService.push(`/profiles-list/create`);
+    } else if (name === 'delete') {
+      ioc.personService.delete(selectedRows);
+      apiRef.current?.reload();
+      setSelectedRows([]);
+      ioc.alertService.notify('Deleted')
     }
   }
 
@@ -141,6 +145,10 @@ export const ProfilesPage = () => {
     ioc.routerService.push(`/profiles-list/${person.id}`);      //переход пo конкретному ID
   };
 
+  const handleSelectedRows = (rows: RowId[]) => {
+    setSelectedRows(rows)
+    console.log(rows)
+  };
 
   return (
     <ListTyped<IFilterData, IPerson>
@@ -156,6 +164,7 @@ export const ProfilesPage = () => {
       columns={columns}
       handler={ioc.personService.list}
       fallback={ioc.personService.fallback}
+      onSelectedRows={handleSelectedRows}
       onRowAction={handleRemove}
       onRowClick={handleClick}
       onAction={handleAction}

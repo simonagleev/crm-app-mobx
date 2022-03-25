@@ -70,11 +70,10 @@ const fields: TypedField[] = [
             columns: "5",
             fields: [
               {
+                name: "id",
                 type: FieldType.Text,
                 outlined: false,
                 title: "Outer ID",
-                name: "id",
-
               },
             ]
           },
@@ -117,24 +116,14 @@ const fields: TypedField[] = [
                 title: 'E-mail',
               },
               {
-                name: 'facebook',
+                name: 'country',
                 type: FieldType.Text,
-                title: 'Facebook',
+                title: 'Country',
               },
               {
-                name: 'instagram',
+                name: 'phone',
                 type: FieldType.Text,
-                title: 'Instagram',
-              },
-              {
-                name: 'whatsapp',
-                type: FieldType.Text,
-                title: 'Whatsapp',
-              },
-              {
-                name: 'telegram',
-                type: FieldType.Text,
-                title: 'Telegram',
+                title: 'Phone number',
               },
             ]
           },
