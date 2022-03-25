@@ -66,7 +66,8 @@ export class PersonService {
   }
 
   async remove(person: IPerson) {
-    // await this.apiService.delete(`crud/${person.id}`);
+    console.log('REMOVE')
+    this.innerProfiles.delete(person.id)
   };
 
   fallback(e: Error) {

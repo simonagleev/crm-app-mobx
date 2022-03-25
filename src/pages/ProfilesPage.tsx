@@ -35,55 +35,55 @@ const columns: IColumn[] = [
     type: ColumnType.Text,
     field: 'id',
     headerName: 'ID',
-    width: '200px',
+    width: '20%',
   },
   {
     type: ColumnType.Text,
     field: 'firstName',
     headerName: 'First name',
-    width: '200px',
+    width: '10%',
   },
   {
     type: ColumnType.Text,
     field: 'lastName',
     headerName: 'Last name',
-    width: '200px',
+    width: '10%',
   },
   {
     type: ColumnType.Text,
     field: 'gender',
     headerName: 'Gender',
-    width: '200px',
+    width: '10%',
   },
   {
     type: ColumnType.Text,
     field: 'phone',
     headerName: 'Phone number',
-    width: '200px',
+    width: '10%',
   },
   {
     type: ColumnType.Text,
     field: 'email',
     headerName: 'Email',
-    width: '200px',
+    width: '10%',
   },
   {
     type: ColumnType.Text,
     field: 'country',
     headerName: 'Country',
-    width: '200px',
+    width: '10%',
   },
   {
     type: ColumnType.CheckBox,
     field: 'active',
     headerName: 'Active',
-    width: '200px',
+    width: '10%',
   },
   {
     type: ColumnType.Action,
     headerName: 'Actions',
     sortable: false,
-    width: '150px',
+    width: '10%',
   },
 ];
 
@@ -125,7 +125,7 @@ export const ProfilesPage = () => {
   const apiRef = useRef<IListApi>(null);
 
   const handleRemove = async (person: IPerson) => {
-    // await ioc.personService.remove(person);        //REMOVE from personservice
+    await ioc.personService.remove(person);        //REMOVE from personservice
     apiRef.current?.reload();
   };
 
