@@ -3,7 +3,12 @@ export default [
         "id": "b4a5b7e7-c092-4b15-b0c4-925c7ef6700c",
         "firstName": "Icieaa",
         "lastName": "Hand",
-        "age": "31271"
+        "age": "31271",
+        "phone": "88005553535",
+        "gender": "male",
+        "email": 'lalalal@mail.ru',
+        "country": 'bobo',
+        "active": true
     },
     {
         "id": "91d8c011-2e5f-42a7-9b72-b3d23a5e88e7",
@@ -59950,5 +59955,5 @@ export default [
         "firstName": "qqq",
         "lastName": "qqqq",
         "age": "12"
-    }
+    } 
 ]

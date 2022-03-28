@@ -6,8 +6,8 @@ import { CC_ERROR } from "../../config";
 import IPerson from "../../model/IPerson";
 import RouterService from "./RouterService"
 import TYPES from "../types";
+import generatedProfiles from '../../mock/generatedProfiles'
 import { makeObservable } from "mobx";
-import profiles from '../../mock/profiles'
 import { v4 as uuid } from 'uuid';
 
 export class PersonService {
@@ -32,7 +32,7 @@ export class PersonService {
     });
   }
   
-  innerProfiles = new Map<RowId, IPerson>(profiles.map(p => [p.id, p]))
+  innerProfiles = new Map<RowId, IPerson>(generatedProfiles.map(p => [p.id, p]))
 
   get profilesList() {
     return [...this.innerProfiles.values()];

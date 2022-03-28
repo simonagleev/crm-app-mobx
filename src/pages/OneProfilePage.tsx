@@ -1,4 +1,4 @@
-import { AutoSizer, Breadcrumbs, FieldType, One, TypedField } from "react-declarative";
+import { AutoSizer, Breadcrumbs, FieldType, One, TypedField, useList } from "react-declarative";
 
 import IPerson from "../model/IPerson";
 import ioc from "../lib/ioc";
@@ -161,7 +161,7 @@ export const OneProfilePage = ({
       setData(data);
     }
   };
-
+  
   const handleSave = async () => {
     if (data) {
       data.id = id;
