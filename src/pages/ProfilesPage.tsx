@@ -1,5 +1,6 @@
 import {
   ActionType,
+  AutoSizer,
   ColumnType,
   FieldType,
   IListAction,
@@ -13,6 +14,7 @@ import { useRef, useState } from 'react';
 import IColumn from 'react-declarative/model/IColumn';
 import IPerson from '../model/IPerson';
 import TypedField from 'react-declarative/model/TypedField';
+import { findFlagUrlByCountryName } from "country-flags-svg";
 import ioc from '../lib/ioc';
 import { observer } from 'mobx-react';
 
@@ -52,7 +54,7 @@ const columns: IColumn[] = [
     type: ColumnType.Text,
     field: 'gender',
     headerName: 'Gender',
-    width: '10%',
+    width: '5%',
   },
   {
     type: ColumnType.Text,
@@ -65,6 +67,22 @@ const columns: IColumn[] = [
     field: 'email',
     headerName: 'Email',
     width: '15%',
+  },
+  {
+    type: ColumnType.Component,
+    field: 'countryFlag',
+    headerName: 'Flag',
+    width: '5%',
+    element: ({ country }) => {
+      // <AutoSizer>
+      //   {({ width, height }) => {
+      //     return (
+      //       <img src={findFlagUrlByCountryName(country)} alt="flag pic" />
+      //     );
+      //   }}
+      // </AutoSizer>
+      return <img style={{width:"100%", height:"75%", marginTop:"10%"}} src={findFlagUrlByCountryName(country)} alt="flag pic" />
+    } 
   },
   {
     type: ColumnType.Text,
@@ -142,6 +160,7 @@ export const ProfilesPage = () => {
   const handleClick = (person: IPerson) => {
     console.log(person)
     console.log('TEST NAME: ' + person.firstName)
+    ioc.personService.findCountry(person)
     ioc.routerService.push(`/profiles-list/${person.id}`);      //переход пo конкретному ID
   };
 

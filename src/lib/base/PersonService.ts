@@ -6,6 +6,7 @@ import { CC_ERROR } from "../../config";
 import IPerson from "../../model/IPerson";
 import RouterService from "./RouterService"
 import TYPES from "../types";
+import { findFlagUrlByCountryName } from "country-flags-svg";
 import generatedProfiles from '../../mock/generatedProfiles'
 import { makeObservable } from "mobx";
 import { v4 as uuid } from 'uuid';
@@ -38,6 +39,16 @@ export class PersonService {
     return [...this.innerProfiles.values()];
   }
 
+  get countryList() {
+    const values =  [...this.innerProfiles.values()]
+    return values.map(i => i.country)
+  }
+  
+  findCountry(person: IPerson) {
+    return person.country
+  }
+  
+  
   list: ListHandler = (data, {
     limit,
     offset,
@@ -77,7 +88,7 @@ export class PersonService {
   fallback(e: Error) {
     this.routerService.push(CC_ERROR);
     console.warn(e);
-  }
+  };
 };
 
 export default PersonService;

@@ -1,6 +1,7 @@
 import { AutoSizer, Breadcrumbs, FieldType, One, TypedField, useList } from "react-declarative";
 
 import IPerson from "../model/IPerson";
+import { findFlagUrlByCountryName } from "country-flags-svg";
 import ioc from "../lib/ioc";
 import { observer } from "mobx-react";
 import { useState } from "react";
@@ -178,7 +179,14 @@ export const OneProfilePage = ({
   };
 
   const handler = () => ioc.personService.one(id);
-
+  
+  const test = () => {
+    const test1 = ioc.personService.countryList
+    console.log(test1)
+  }
+  const person = ioc.personService.one(id)
+  const flag = findFlagUrlByCountryName(ioc.personService.findCountry(person!))
+  
   return (
     <>
       <Breadcrumbs
@@ -194,6 +202,7 @@ export const OneProfilePage = ({
         fallback={ioc.personService.fallback}
         onChange={handleChange}
       />
+      <div onClick={test}><img src={flag} alt="flag" /></div>
     </>
   );
 };
