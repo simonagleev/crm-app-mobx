@@ -11,11 +11,12 @@ import {
 } from 'react-declarative';
 import { useRef, useState } from 'react';
 
+import CountryFlag from './components/CountryFlag';
 import IColumn from 'react-declarative/model/IColumn';
-import IPerson from '../model/IPerson';
+import IPerson from '../../model/IPerson';
 import TypedField from 'react-declarative/model/TypedField';
 import { findFlagUrlByCountryName } from "country-flags-svg";
-import ioc from '../lib/ioc';
+import ioc from '../../lib/ioc';
 import { observer } from 'mobx-react';
 
 const filters: TypedField[] = [
@@ -30,6 +31,7 @@ const filters: TypedField[] = [
     title: 'Last name',
   }
 ];
+const width = window.innerWidth*0.2
 
 const columns: IColumn[] = [
   {
@@ -72,24 +74,15 @@ const columns: IColumn[] = [
     type: ColumnType.Component,
     field: 'countryFlag',
     headerName: 'Flag',
-    width: '5%',
-    element: ({ country }) => {
-      // <AutoSizer>
-      //   {({ width, height }) => {
-      //     return (
-      //       <img src={findFlagUrlByCountryName(country)} alt="flag pic" />
-      //     );
-      //   }}
-      // </AutoSizer>
-      return <img style={{width:"100%", height:"75%", marginTop:"10%"}} src={findFlagUrlByCountryName(country)} alt="flag pic" />
-    } 
+    width: '250px',
+    element: CountryFlag,
   },
-  {
-    type: ColumnType.Text,
-    field: 'country',
-    headerName: 'Country',
-    width: '10%',
-  },
+  // {
+  //   type: ColumnType.Text,
+  //   field: 'country',
+  //   headerName: 'Country',
+  //   width: '10%',
+  // },
   {
     type: ColumnType.CheckBox,
     field: 'active',
