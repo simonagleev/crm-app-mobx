@@ -17,6 +17,7 @@ export interface CircleProps {
   textStyle?: CSSProperties;
   roundedStroke?: boolean;
   responsive?: boolean;
+  className?: string;
   onAnimationEnd?(): void;
 }
 
@@ -38,7 +39,8 @@ export const Circle: FC<CircleProps> = ({
     textColor = '#6b778c',
     textStyle= { font: 'bold 4rem Helvetica, Arial, sans-serif' },
     percentSpacing = 10,
-    showPercentageSymbol = true
+    showPercentageSymbol = true,
+    className = "",
   }) => {
 
   const [strokeDashoffset, setStrokeDashoffset] = useState(0) 
@@ -64,7 +66,7 @@ export const Circle: FC<CircleProps> = ({
   }
   
   return (
-    <svg width={svgSize} height={svgSize} viewBox="-25 -25 400 400">
+    <svg className={className} width={svgSize} height={svgSize} viewBox="-25 -25 400 400">
       <circle stroke={bgColor} cx="175" cy="175" r="175" strokeWidth={lineWidth} fill="none"/> 
       <circle stroke={progressColor} transform="rotate(-90 175 175)" cx="175" cy="175" r="175" 
       strokeDasharray="1100" strokeWidth={lineWidth} strokeDashoffset="1100" strokeLinecap={strokeLinecap} 

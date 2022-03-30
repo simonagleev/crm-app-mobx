@@ -1,26 +1,18 @@
 import { AutoSizer, Breadcrumbs, FieldType, One } from 'react-declarative';
 
-import BarChart from './components/BarChart';
-import { Circle } from './components/Circle';
+import IndicatorChart from '../../components/common/IndicatorChart';
 import TypedField from 'react-declarative/model/TypedField';
 
 const createCard = (): TypedField => ({
     type: FieldType.Hero,
     columns: '6',
-    height: '100vh',
-    right: '10px',
+    height: '50vh',
+    right: '',
     bottom: '10px',
     child: {
         type: FieldType.Component,
         element: () => (
-            <AutoSizer>
-                {({ width, height }) => {
-                    console.log('TEST ' + height, width);
-                    return (
-                        <BarChart height={height} width={width} /> 
-                    );
-                }}
-            </AutoSizer>
+            <IndicatorChart/>
         )
     },
 })
@@ -35,13 +27,6 @@ const fields: TypedField[] = [
                 columns: "12",
                 fields: [
                     createCard(),
-                    {
-                        type: FieldType.Text,
-                        columns: '6',
-                        outlined: false,
-                        title: "Identificator",
-                        name: "id",
-                    },
                 ]
             }
         ]
@@ -57,9 +42,9 @@ export const ChartPage = () => (
         <One
             fields={fields}
         />
-        <Circle 
+        {/* <Circle 
             progress={90}
-        />
+        /> */}
     </>
 )
 
