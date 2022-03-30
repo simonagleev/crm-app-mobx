@@ -1,6 +1,9 @@
 import { AutoSizer } from 'react-declarative';
 import Box from '@mui/material/Box';
 import Circle from './components/Circle';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { makeStyles } from '@mui/styles';
@@ -35,6 +38,10 @@ const useStyles = makeStyles({
     circleWrapper: {
         minHeight: 175,
     },
+    titleLabel: {
+        paddingLeft: 10,
+        paddingTop: 5,
+    }
 });
 
 export const IndicatorChart = () => {
@@ -48,6 +55,14 @@ export const IndicatorChart = () => {
                 alignItems="stretch"
                 spacing={2}
             >
+                <Box>
+                    <ListItem disablePadding className={classes.titleLabel}>
+                        <ListItemText
+                            primary="Traffic sources"
+                            secondary="last 28 days" 
+                         />
+                    </ListItem>
+                </Box>
                 <Box className={classes.circleWrapper}>
                     <AutoSizer className={classes.circle}>
                         {({height, width}) => (
@@ -62,6 +77,7 @@ export const IndicatorChart = () => {
                 </Box>
                 <Box flexGrow={1}>
                 </Box>
+                
             </Stack>
         </Paper>
     );

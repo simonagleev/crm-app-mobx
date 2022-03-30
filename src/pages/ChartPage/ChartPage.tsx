@@ -5,7 +5,7 @@ import TypedField from 'react-declarative/model/TypedField';
 
 const createCard = (): TypedField => ({
     type: FieldType.Hero,
-    columns: '6',
+    columns: '12',
     height: '50vh',
     right: '',
     bottom: '10px',
