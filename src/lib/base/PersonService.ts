@@ -6,7 +6,7 @@ import { CC_ERROR } from "../../config";
 import IPerson from "../../model/IPerson";
 import RouterService from "./RouterService"
 import TYPES from "../types";
-import generatedProfiles from '../../mock/generatedProfiles'
+import generatedProfiles from '../../mock/profiles'
 import { makeObservable } from "mobx";
 import { v4 as uuid } from 'uuid';
 
