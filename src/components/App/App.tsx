@@ -21,7 +21,7 @@ export const App = () => {
         }
       };
       return (
-       <Scaffold onOptionClick={handleMenuClick} title="InfoLink CRM" options={options}>
+       <Scaffold onOptionClick={handleMenuClick} title="InfoLink CRM" options={options} >
             <Switch
                 Loading={() => <p>Checking permissions (mock)</p>}
                 NotFound={() => <p>Not found(</p>}
