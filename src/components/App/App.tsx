@@ -1,6 +1,5 @@
 import { Scaffold, Switch } from "react-declarative";
 
-import Grid from '@mui/material/Grid';
 import ioc from "../../lib/ioc";
 import { observer } from "mobx-react";
 import options from "./options";
@@ -18,14 +17,12 @@ export const App = () => {
   };
   return (
     <Scaffold onOptionClick={handleMenuClick} title="InfoLink CRM" options={options} >
-      <Grid container>
-        <Switch
-          Loading={() => <p>Checking permissions (mock)</p>}
-          NotFound={() => <p>Not found(</p>}
-          history={ioc.routerService}
-          items={routes}
-        />
-      </Grid>
+      <Switch
+        Loading={() => <p>Checking permissions (mock)</p>}
+        NotFound={() => <p>Not found(</p>}
+        history={ioc.routerService}
+        items={routes}
+      />
     </Scaffold>
   )
 }

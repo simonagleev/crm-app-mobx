@@ -13,12 +13,10 @@ import MarkChatUnreadIcon from '@mui/icons-material/MarkChatUnread';
 import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
 import WorkIcon from '@mui/icons-material/Work';
 
-const CC_CELL_PADDING = "7px";
-
 const fields: TypedField[] = [
   {
     type: FieldType.Hero,
-    columns: "4",
+    columns: "6",
     phoneColumns: "12",
     height: `33vh`,
     right: '10px',
@@ -27,9 +25,29 @@ const fields: TypedField[] = [
       type: FieldType.Component,
       element: () => (
         <IndicatorCard
-          color="green"
-          label='test'
-          value='123'
+          color="blue"
+          label='New chats'
+          value='58'
+          icon={MarkChatUnreadIcon}
+        />
+      ),
+    },
+  },
+  {
+    type: FieldType.Hero,
+    columns: "6",
+    phoneColumns: "12",
+    height: `33vh`,
+    right: '10px',
+    bottom: '10px',
+    child: {
+      type: FieldType.Component,
+      element: () => (
+        <IndicatorCard
+          color="OrangeRed"
+          label='New sales'
+          value='15'
+          icon={PointOfSaleIcon }
         />
       ),
     },
@@ -45,9 +63,29 @@ const fields: TypedField[] = [
       type: FieldType.Component,
       element: () => (
         <IndicatorCard
-          color="yellow"
-          label='test'
-          value='123'
+          color="orange"
+          label='Hours worked'
+          value='37 of 40'
+          icon={WorkIcon}
+        />
+      ),
+    },
+  },
+  {
+    type: FieldType.Hero,
+    columns: "4",
+    phoneColumns: "12",
+    height: `33vh`,
+    right: '10px',
+    bottom: '10px',
+    child: {
+      type: FieldType.Component,
+      element: () => (
+        <IndicatorCard
+          color="DodgerBlue"
+          label='Late arrivals'
+          value='5'
+          icon={AssignmentLateIcon}
         />
       ),
     },
@@ -64,8 +102,47 @@ const fields: TypedField[] = [
       element: () => (
         <IndicatorCard
           color="green"
-          label='test'
-          value='123'
+          label='Absence hours'
+          value='1'
+          icon={DirectionsRunIcon}
+        />
+      ),
+    },
+  },
+  {
+    type: FieldType.Hero,
+    columns: "6",
+    phoneColumns: "12",
+    height: `33vh`,
+    right: '10px',
+    bottom: '10px',
+    child: {
+      type: FieldType.Component,
+      element: () => (
+        <IndicatorCard
+          color="Indigo"
+          label='Overtime'
+          value='1'
+          icon={AccessTimeIcon}
+        />
+      ),
+    },
+  },
+  {
+    type: FieldType.Hero,
+    columns: "6",
+    phoneColumns: "12",
+    height: `33vh`,
+    right: '10px',
+    bottom: '10px',
+    child: {
+      type: FieldType.Component,
+      element: () => (
+        <IndicatorCard
+          color="#d70040"
+          label='Downtime'
+          value='0'
+          icon={HighlightOffIcon}
         />
       ),
     },

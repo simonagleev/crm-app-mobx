@@ -48,7 +48,7 @@ export const IndicatorCard = ({
                     justifyContent="center"
                     alignItems="center"                   
                 >
-                    <Avatar>
+                    <Avatar style={{color: color}}>
                         <Icon />
                     </Avatar>
                 </Stack>
