@@ -1,6 +1,5 @@
 import {
   ActionType,
-  AutoSizer,
   ColumnType,
   FieldType,
   IListAction,
@@ -15,7 +14,6 @@ import CountryFlag from './components/CountryFlag';
 import IColumn from 'react-declarative/model/IColumn';
 import IPerson from '../../model/IPerson';
 import TypedField from 'react-declarative/model/TypedField';
-import { findFlagUrlByCountryName } from "country-flags-svg";
 import ioc from '../../lib/ioc';
 import { observer } from 'mobx-react';
 
@@ -31,69 +29,66 @@ const filters: TypedField[] = [
     title: 'Last name',
   }
 ];
-const width = window.innerWidth*0.2
+
+const widthID = Math.ceil(window.innerWidth*0.15).toString() + 'px'
+const widthFirstName = Math.ceil(window.innerWidth*0.1).toString() + 'px'
+const widthCountry = Math.ceil(window.innerWidth*0.15).toString() + 'px'
 
 const columns: IColumn[] = [
   {
     type: ColumnType.Text,
     field: 'id',
     headerName: 'ID',
-    width: '20%',
+    width: '15vw',
   },
   {
     type: ColumnType.Text,
     field: 'firstName',
     headerName: 'First name',
-    width: '10%',
+    width: '9vw',
   },
   {
     type: ColumnType.Text,
     field: 'lastName',
     headerName: 'Last name',
-    width: '10%',
+    width: '9vw',
   },
   {
     type: ColumnType.Text,
     field: 'gender',
     headerName: 'Gender',
-    width: '5%',
+    width: '8vw',
   },
   {
     type: ColumnType.Text,
     field: 'phone',
     headerName: 'Phone number',
-    width: '15%',
+    width: '11vw',
   },
   {
     type: ColumnType.Text,
     field: 'email',
     headerName: 'Email',
-    width: '15%',
+    width: '15vw',
   },
   {
     type: ColumnType.Component,
     field: 'countryFlag',
-    headerName: 'Flag',
-    width: '250px',
+    headerName: 'Country',
+    width: '13vw',
     element: CountryFlag,
   },
-  // {
-  //   type: ColumnType.Text,
-  //   field: 'country',
-  //   headerName: 'Country',
-  //   width: '10%',
-  // },
   {
     type: ColumnType.CheckBox,
     field: 'active',
     headerName: 'Active',
-    width: '5%',
+    width: '5vw',
   },
   {
     type: ColumnType.Action,
     headerName: 'Actions',
     sortable: false,
-    width: '5%',
+    width: '5vw',
   },
 ];
 
