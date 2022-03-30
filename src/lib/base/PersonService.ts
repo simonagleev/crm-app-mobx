@@ -43,11 +43,17 @@ export class PersonService {
     return values.map(i => i.country)
   }
    
-  list: ListHandler = (data, {
+  list: ListHandler = (filterData, {
     limit,
-    offset,
+    offset, 
   }, sort) => {
     let rows = this.profilesList;
+
+    Object.entries(filterData).forEach(([key, value]) => {
+      if (value) {
+        rows = rows.filter((row) => String(row[key as keyof IPerson]).includes(value as string));
+      }
+    });
 
     sort.forEach(({
       field,
