@@ -51,7 +51,11 @@ export class PersonService {
 
     Object.entries(filterData).forEach(([key, value]) => {
       if (value) {
-        rows = rows.filter((row) => String(row[key as keyof IPerson]).includes(value as string));
+        const templateValue = String(value).toLocaleLowerCase();
+        rows = rows.filter((row) => {
+          const rowValue = String(row[key as keyof IPerson]).toLowerCase();
+          return rowValue.includes(templateValue);
+        });
       }
     });
 
