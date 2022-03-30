@@ -18,19 +18,7 @@ const createCard = (): TypedField => ({
 })
 
 const fields: TypedField[] = [
-    {
-        type: FieldType.Group,
-        fieldBottomMargin: "0",
-        fields: [
-            {
-                type: FieldType.Group,
-                columns: "12",
-                fields: [
-                    createCard(),
-                ]
-            }
-        ]
-    }
+    createCard(),
 ]
 
 export const ChartPage = () => (
