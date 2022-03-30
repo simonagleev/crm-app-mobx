@@ -1,12 +1,11 @@
 import { ListHandler, RowId, inject } from 'react-declarative';
-import { action, computed, observable } from "mobx";
+import { action, computed, observable, toJS } from "mobx";
 
 import AlertService from './AlertService';
 import { CC_ERROR } from "../../config";
 import IPerson from "../../model/IPerson";
 import RouterService from "./RouterService"
 import TYPES from "../types";
-import { findFlagUrlByCountryName } from "country-flags-svg";
 import generatedProfiles from '../../mock/generatedProfiles'
 import { makeObservable } from "mobx";
 import { v4 as uuid } from 'uuid';
@@ -36,26 +35,36 @@ export class PersonService {
   innerProfiles = new Map<RowId, IPerson>(generatedProfiles.map(p => [p.id, p]))
 
   get profilesList() {
-    return [...this.innerProfiles.values()];
+    return [...this.innerProfiles.values()].map((profile) => toJS(profile));
   }
 
   get countryList() {
     const values =  [...this.innerProfiles.values()]
     return values.map(i => i.country)
   }
-  
-  findCountry(person: IPerson) {
-    return person.country
-  }
-  
-  
+   
   list: ListHandler = (data, {
     limit,
     offset,
-  }) => {
+  }, sort) => {
+    let rows = this.profilesList;
+
+    sort.forEach(({
+      field,
+      sort,
+    }) => {
+      rows = rows.sort((a, b) => {
+        const value1 = String(a[field as keyof IPerson]);
+        const value2 = String(b[field as keyof IPerson]);
+        return sort === 'asc' ? value1.localeCompare(value2) : value2.localeCompare(value1);
+      });
+    });
+
+    rows = rows.slice(offset, limit + offset);
+
     return {
+      rows,
       total: this.profilesList.length,
-      rows: this.profilesList.slice(offset, limit + offset),
     };
   };
 
@@ -89,6 +98,7 @@ export class PersonService {
     this.routerService.push(CC_ERROR);
     console.warn(e);
   };
+
 };
 
 export default PersonService;

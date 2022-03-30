@@ -44,17 +44,6 @@ export default [
     "country": "Saudi Arabia"
   },
   {
-    "id": "62441b959782b4160f97cdce",
-    "firstName": "Olga",
-    "lastName": "Luna",
-    "age": 92,
-    "gender": "female",
-    "phone": "+1 (959) 450-3193",
-    "email": "olgaluna@niquent.com",
-    "active": false,
-    "country": "British Indian Ocean Territory"
-  },
-  {
     "id": "62441b954cb95424cb6a08b3",
     "firstName": "Stark",
     "lastName": "Whitfield",
@@ -283,7 +272,7 @@ export default [
     "phone": "+1 (811) 517-2713",
     "email": "dorthyrivera@niquent.com",
     "active": true,
-    "country": "Cote D'Ivoire (Ivory Coast)"
+    "country": "Cote D'Ivoire"
   },
   {
     "id": "62441b95697b7a9bed020ab9",
@@ -636,5 +625,16 @@ export default [
     "email": "alisonavila@niquent.com",
     "active": false,
     "country": "Slovak Republic"
+  },
+  {
+    "id": "62441b959782b4160f97cdce",
+    "firstName": "Olga",
+    "lastName": "Luna",
+    "age": 92,
+    "gender": "female",
+    "phone": "+1 (959) 450-3193",
+    "email": "olgaluna@niquent.com",
+    "active": false,
+    "country": "British Indian Ocean Territory"
   }
 ]

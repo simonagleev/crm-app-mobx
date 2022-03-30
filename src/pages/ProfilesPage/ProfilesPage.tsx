@@ -30,40 +30,31 @@ const filters: TypedField[] = [
   }
 ];
 
-const widthID = Math.ceil(window.innerWidth*0.15).toString() + 'px'
-const widthFirstName = Math.ceil(window.innerWidth*0.1).toString() + 'px'
-const widthCountry = Math.ceil(window.innerWidth*0.15).toString() + 'px'
-
-const columns: IColumn[] = [
+const columns: IColumn<IPerson>[] = [
   {
     type: ColumnType.Text,
     field: 'id',
     headerName: 'ID',
-    width: '15vw',
+    width: 'max(15vw, 150px)',
   },
   {
-    type: ColumnType.Text,
-    field: 'firstName',
-    headerName: 'First name',
-    width: '9vw',
-  },
-  {
-    type: ColumnType.Text,
-    field: 'lastName',
-    headerName: 'Last name',
-    width: '9vw',
+    type: ColumnType.Compute,
+    field: 'name',
+    headerName: 'Name',
+    width: 'max(15vw, 100px)',
+    compute: ({ firstName, lastName }) => `${firstName} ${lastName}`,  
   },
   {
     type: ColumnType.Text,
     field: 'gender',
     headerName: 'Gender',
-    width: '8vw',
+    width: 'max(8vw, 75px)',
   },
   {
     type: ColumnType.Text,
     field: 'phone',
     headerName: 'Phone number',
-    width: '11vw',
+    width: '10vw',
   },
   {
     type: ColumnType.Text,
@@ -82,13 +73,13 @@ const columns: IColumn[] = [
     type: ColumnType.CheckBox,
     field: 'active',
     headerName: 'Active',
-    width: '5vw',
+    width: 'max(5vw, 60px)',
   },
   {
     type: ColumnType.Action,
     headerName: 'Actions',
     sortable: false,
-    width: '5vw',
+    width: 'max(5vw, 50px)',
   },
 ];
 
@@ -148,13 +139,13 @@ export const ProfilesPage = () => {
   const handleClick = (person: IPerson) => {
     console.log(person)
     console.log('TEST NAME: ' + person.firstName)
-    ioc.personService.findCountry(person)
     ioc.routerService.push(`/profiles-list/${person.id}`);      //переход пo конкретному ID
   };
 
   const handleSelectedRows = (rows: RowId[]) => {
     setSelectedRows(rows)
     console.log(rows)
+    console.log(ioc.personService.profilesList)
   };
 
   return (

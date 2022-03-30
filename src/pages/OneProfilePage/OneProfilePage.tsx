@@ -1,7 +1,6 @@
-import { AutoSizer, Breadcrumbs, FieldType, One, TypedField, useList } from "react-declarative";
+import { AutoSizer, Breadcrumbs, FieldType, One, TypedField } from "react-declarative";
 
 import IPerson from "../../model/IPerson";
-import { findFlagUrlByCountryName } from "country-flags-svg";
 import ioc from "../../lib/ioc";
 import { observer } from "mobx-react";
 import { useState } from "react";
