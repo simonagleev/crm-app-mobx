@@ -17,13 +17,15 @@ const fields: TypedField[] = [
           {
             type: FieldType.Component,
             element: () => (
-              <AutoSizer style={{ height: 225 }}>
-                {({ height, width }) => (
-                  <div>
-                    <img src="https://image.shutterstock.com/image-vector/blank-avatar-photo-place-holder-260nw-1114445501.jpg"
-                      alt="Profile pic" style={{ height: width, width: width }}
-                    />
-                  </div>
+              <AutoSizer keepFlow>
+                {({ width }) => (
+                  <div
+                    style={{
+                      background: '#0003',
+                      height: width,
+                      width,
+                    }}
+                  />
                 )}
               </AutoSizer>)
           },

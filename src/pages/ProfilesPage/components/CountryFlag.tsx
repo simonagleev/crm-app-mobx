@@ -1,4 +1,3 @@
-import { AutoSizer } from 'react-declarative';
 import Box from '@mui/material/Box';
 import React from 'react';
 import Stack from '@mui/material/Stack';
@@ -18,15 +17,7 @@ export const CountryFlag = ({
     return (
         <Box style={{display: 'flex', alignItems: 'center'}}>
             <Stack direction={'row'} spacing={0}>
-                <Box style={{height: 30, width: 50}}>
-                  <AutoSizer >
-                    {({ height, width }) => (
-                        <Flag height={height} width={width}/>
-                    )}
-                    </AutoSizer>  
-                </Box>
-                
-                
+                <Flag height={30} width={50}/>
                 <Typography>{country}</Typography> 
             </Stack>
         </Box>

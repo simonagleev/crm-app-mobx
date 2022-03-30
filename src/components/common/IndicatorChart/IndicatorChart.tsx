@@ -21,20 +21,6 @@ const useStyles = makeStyles({
         right: 0,
         bottom: 0,
     },
-    circle: {
-        position: 'relative',
-        flex: 1,
-    },
-    circleInner: {
-        position: 'absolute',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-    },
     circleWrapper: {
         minHeight: 175,
     },
@@ -64,9 +50,9 @@ export const IndicatorChart = () => {
                     </ListItem>
                 </Box>
                 <Box className={classes.circleWrapper}>
-                    <AutoSizer className={classes.circle}>
+                    <AutoSizer>
                         {({height, width}) => (
-                            <Box className={classes.circleInner}>
+                            <Box style={{ height, width, display: "flex", justifyContent: "center" }}>
                                 <Circle
                                     progress={20}
                                     size={`${Math.min(height, width)}px`}
@@ -77,7 +63,6 @@ export const IndicatorChart = () => {
                 </Box>
                 <Box flexGrow={1}>
                 </Box>
-                
             </Stack>
         </Paper>
     );
