@@ -59,7 +59,7 @@ export const IndicatorChart = () => {
                         {({ height, width }) => (
                             <Box style={{ height, width, display: "flex", justifyContent: "center" }}>
                                 <Circle
-                                    progress={20}
+                                    progress={15}
                                     size={`${Math.min(height, width)}px`}
                                 />
                             </Box>
