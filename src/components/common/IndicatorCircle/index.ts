@@ -1,2 +1,2 @@
-export * from './IndicatorCircle';
-export { default } from './IndicatorCircle';
+export * from './IndicatorChartBottom';
+export { default } from './IndicatorChartBottom';

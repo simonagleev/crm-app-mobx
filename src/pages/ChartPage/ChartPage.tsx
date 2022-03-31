@@ -1,14 +1,14 @@
 import { AutoSizer, Breadcrumbs, FieldType, One } from 'react-declarative';
+import { Box, Stack } from '@mui/material';
 
-import { Box } from '@mui/material';
 import IndicatorChart from '../../components/common/IndicatorChart';
-import IndicatorCircle from '../../components/common/IndicatorCircle';
+import { IndicatorChartBottom } from '../../components/common/IndicatorCircle';
 import TypedField from 'react-declarative/model/TypedField';
 
 const createCard = (): TypedField => ({
     type: FieldType.Hero,
     columns: '6',
-    height: '70vh',
+    height: '80vh',
     right: '',
     bottom: '10px',
     child: {
@@ -33,28 +33,45 @@ const fields: TypedField[] = [
                 tabletColumns: '2',
                 fields: [
                     {
-                        type: FieldType.Component,
-                        columns: "6",
-                        element: () => (
-                            <Box></Box>
-                        )
+                        type: FieldType.Hero,
+                        columns: '6',
+                        height: '80vh',
+                        right: '10px',
+                        bottom: '10px',
+                        child: {
+                            type: FieldType.Component,
+                            element: () => (
+                                
+                                    <Box>
+                                        
+                                        <IndicatorChartBottom/>
+                                    </Box>
+                                
+                                
+                                
+                                
+                            )
+                        },  
                     },
                     createCard(),
                 ]
             },
-            {
-                type: FieldType.Hero,
-                columns: '12',
-                height: '30vh',
-                right: '',
-                bottom: '10px',
-                child: {
-                    type: FieldType.Component,
-                    element: () => (
-                        <IndicatorCircle/>
-                    )
-                },  
-            }    
+            // {
+            //     type: FieldType.Hero,
+            //     columns: '6',
+            //     height: '30vh',
+            //     right: '',
+            //     bottom: '10px',
+            //     child: {
+            //         type: FieldType.Component,
+            //         element: () => (
+            //             <Box>
+            //                 <IndicatorChartBottom/>
+            //             </Box>
+                        
+            //         )
+            //     },  
+            // }    
         ]
     },
     

@@ -50,13 +50,13 @@ export const IndicatorChart = () => {
                     <ListItem disablePadding className={classes.titleLabel}>
                         <ListItemText
                             primary="Traffic sources"
-                            secondary="last 28 days" 
-                         />
+                            secondary="last 28 days"
+                        />
                     </ListItem>
                 </Box>
                 <Box className={classes.circleWrapper}>
                     <AutoSizer>
-                        {({height, width}) => (
+                        {({ height, width }) => (
                             <Box style={{ height, width, display: "flex", justifyContent: "center" }}>
                                 <Circle
                                     progress={20}
@@ -66,53 +66,49 @@ export const IndicatorChart = () => {
                         )}
                     </AutoSizer>
                 </Box>
-                <Box>
-                    <ListItem disablePadding className={classes.titleLabel}>
-                        <ListItem disablePadding>
-                            <ListItemButton>
+                <List>
+                    <ListItem disablePadding>
+                        <ListItemButton>
                             <ListItemIcon>
-                                <TelegramIcon color="secondary"/>
+                                <TelegramIcon color="secondary" />
                             </ListItemIcon>
-                            <ListItemText 
-                                primary="Telegram" 
+                            <ListItemText
+                                primary="Telegram"
                                 secondary='22.02.2022 15:23'
                             />
-                            </ListItemButton>
-                        </ListItem>
+                        </ListItemButton>
                     </ListItem>
 
-                    <ListItem disablePadding className={classes.titleLabel}>
-                        <ListItem disablePadding>
-                            <ListItemButton>
+                    <ListItem disablePadding>
+                        <ListItemButton>
                             <ListItemIcon>
                                 <svg width={0} height={0}>
                                     <linearGradient id="linearColors" x1={1} y1={0} x2={0} y2={1}>
-                                    <stop offset={0} stopColor="#0055DD" />
-                                    <stop offset={1} stopColor="#FD1D1D" />
+                                        <stop offset={0} stopColor="#0055DD" />
+                                        <stop offset={1} stopColor="#FD1D1D" />
                                     </linearGradient>
                                 </svg>
                                 <InstagramIcon sx={{ fill: "url(#linearColors)" }} />
                             </ListItemIcon>
-                            <ListItemText 
-                                primary="Instagram" 
+                            <ListItemText
+                                primary="Instagram"
                                 secondary='22.02.2022 15:42'
                             />
-                            </ListItemButton>
-                        </ListItem>
+                        </ListItemButton>
                     </ListItem>
-                    
-                    <ListItem disablePadding  className={classes.titleLabel}>
-                            <ListItemButton>
+
+                    <ListItem disablePadding>
+                        <ListItemButton>
                             <ListItemIcon>
-                                <FacebookIcon color="secondary"/>
+                                <FacebookIcon color="secondary" />
                             </ListItemIcon>
-                            <ListItemText 
-                                primary="Drafts" 
+                            <ListItemText
+                                primary="Drafts"
                                 secondary='22.02.2022 16:01'
                             />
-                            </ListItemButton>
+                        </ListItemButton>
                     </ListItem>
-                </Box>
+                </List>
                 <Box flexGrow={1}>
                 </Box>
             </Stack>

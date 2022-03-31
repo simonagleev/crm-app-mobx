@@ -22,7 +22,7 @@ export const BarChartLight = ({
                     top: 0.2,
                     bottom: 0.2,
                 },
-                borderVisible: false,
+                borderVisible: true,
             },
             timeScale: {
                 borderVisible: false,
