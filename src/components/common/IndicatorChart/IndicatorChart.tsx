@@ -1,11 +1,16 @@
 import { AutoSizer } from 'react-declarative';
 import Box from '@mui/material/Box';
 import Circle from './components/Circle';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
+import TelegramIcon from '@mui/icons-material/Telegram';
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
@@ -60,6 +65,53 @@ export const IndicatorChart = () => {
                             </Box>
                         )}
                     </AutoSizer>
+                </Box>
+                <Box>
+                    <ListItem disablePadding className={classes.titleLabel}>
+                        <ListItem disablePadding>
+                            <ListItemButton>
+                            <ListItemIcon>
+                                <TelegramIcon color="secondary"/>
+                            </ListItemIcon>
+                            <ListItemText 
+                                primary="Telegram" 
+                                secondary='22.02.2022 15:23'
+                            />
+                            </ListItemButton>
+                        </ListItem>
+                    </ListItem>
+
+                    <ListItem disablePadding className={classes.titleLabel}>
+                        <ListItem disablePadding>
+                            <ListItemButton>
+                            <ListItemIcon>
+                                <svg width={0} height={0}>
+                                    <linearGradient id="linearColors" x1={1} y1={0} x2={0} y2={1}>
+                                    <stop offset={0} stopColor="#0055DD" />
+                                    <stop offset={1} stopColor="#FD1D1D" />
+                                    </linearGradient>
+                                </svg>
+                                <InstagramIcon sx={{ fill: "url(#linearColors)" }} />
+                            </ListItemIcon>
+                            <ListItemText 
+                                primary="Instagram" 
+                                secondary='22.02.2022 15:42'
+                            />
+                            </ListItemButton>
+                        </ListItem>
+                    </ListItem>
+                    
+                    <ListItem disablePadding  className={classes.titleLabel}>
+                            <ListItemButton>
+                            <ListItemIcon>
+                                <FacebookIcon color="secondary"/>
+                            </ListItemIcon>
+                            <ListItemText 
+                                primary="Drafts" 
+                                secondary='22.02.2022 16:01'
+                            />
+                            </ListItemButton>
+                    </ListItem>
                 </Box>
                 <Box flexGrow={1}>
                 </Box>

@@ -13,6 +13,8 @@ const fields: TypedField[] = [
       {
         type: FieldType.Group,
         columns: "2",
+        phoneColumns: '12',
+        tabletColumns: '2',
         fields: [
           {
             type: FieldType.Component,
@@ -41,6 +43,8 @@ const fields: TypedField[] = [
         type: FieldType.Group,
         fieldBottomMargin: "0",
         columns: "10",
+        phoneColumns: '12',
+        tabletColumns: '10',
         fields: [
           {
             type: FieldType.Group,

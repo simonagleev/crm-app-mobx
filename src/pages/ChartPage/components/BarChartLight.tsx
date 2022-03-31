@@ -5,8 +5,9 @@ import { createChart } from 'lightweight-charts';
 // Диаграмма должна быть в Card
 
 export const BarChartLight = ({
-    height = 300,
-    width = 300,
+    height = 200,
+    width = 200,
+    size = '100',
 }) => {
     const elementRef = useRef(null);
 
@@ -14,8 +15,7 @@ export const BarChartLight = ({
     // const height: number ;
 
     useEffect(() => {
-        const canvasElement = elementRef.current!;   
-        debugger     
+        const canvasElement = elementRef.current!;    
         const chart = createChart(canvasElement, {
             rightPriceScale: {
                 scaleMargins: {
