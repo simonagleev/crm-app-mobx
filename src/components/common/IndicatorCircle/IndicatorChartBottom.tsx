@@ -8,7 +8,6 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { makeStyles } from '@mui/styles';
 
-const minHeight = 175;
 const useStyles = makeStyles({
     root: {
         position: 'relative',
@@ -17,13 +16,13 @@ const useStyles = makeStyles({
     },
     container: {
         position: 'absolute',
-        top: `${window.innerHeight-minHeight}`,
+        top: 0,
         left: 0,
         right: 0,
         bottom: 0,
     },
     circleWrapper: {
-        minHeight: minHeight,
+        minHeight: 175,
         minWidth: 175,
     },
     titleLabel: {
@@ -39,8 +38,8 @@ export const IndicatorChartBottom = () => {
             <Stack
                 className={classes.container}
                 direction="row"
-                justifyContent="center"
-                alignItems="stretch"
+                justifyContent="stretch"
+                alignItems="center"
                 spacing={2}
             >
                 <Box>

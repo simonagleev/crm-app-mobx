@@ -27,7 +27,7 @@ const useStyles = makeStyles({
         bottom: 0,
     },
     circleWrapper: {
-        minHeight: 175,
+        minHeight: 125,
     },
     titleLabel: {
         paddingLeft: 10,
@@ -76,6 +76,10 @@ export const IndicatorChart = () => {
                                 primary="Telegram"
                                 secondary='22.02.2022 15:23'
                             />
+                            <ListItemText sx={{color: 'blue',  display: 'flex', justifyContent: 'flex-end'}}
+                                primary="15%"
+                                
+                            />
                         </ListItemButton>
                     </ListItem>
 
@@ -94,6 +98,10 @@ export const IndicatorChart = () => {
                                 primary="Instagram"
                                 secondary='22.02.2022 15:42'
                             />
+                            <ListItemText sx={{color: '#FF4081', display: 'flex', justifyContent: 'flex-end'}}
+                                primary="35%"
+                                
+                            />
                         </ListItemButton>
                     </ListItem>
 
@@ -105,6 +113,10 @@ export const IndicatorChart = () => {
                             <ListItemText
                                 primary="Drafts"
                                 secondary='22.02.2022 16:01'
+                            />
+                             <ListItemText sx={{color: '#3F51B5',  display: 'flex', justifyContent: 'flex-end'}}
+                                primary="5%"
+                                
                             />
                         </ListItemButton>
                     </ListItem>
