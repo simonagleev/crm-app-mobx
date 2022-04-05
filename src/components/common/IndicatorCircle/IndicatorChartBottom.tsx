@@ -70,7 +70,7 @@ export const IndicatorChartBottom = () => {
                         {({height, width}) => (
                             <Box style={{ height, width, display: "flex", justifyContent: "flex-end"}}>
                                 <Circle
-                                    progress={50}
+                                    progress={56}
                                     size={`${Math.min(height, width)}px`}
                                     progressColor={'rgb(50,205,50)'}
                                 />
